@@ -1,10 +1,20 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/ISongwuts/go-crud-elasticsearch/internal/books/usecase"
+	"github.com/gin-gonic/gin"
+)
 
 type (
-	BookController struct{}
+	BookController struct{
+		BookUsecase *usecase.BookUsecase
+	}
 )
+
+func (bc *BookController) Create(ctx *gin.Context) {
+	
+}
+
 
 func (bc *BookController) GetAll(ctx *gin.Context) {
 	

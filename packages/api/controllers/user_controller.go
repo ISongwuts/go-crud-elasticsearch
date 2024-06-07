@@ -1,10 +1,19 @@
 package controllers
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/ISongwuts/go-crud-elasticsearch/internal/users/usecase"
+	"github.com/gin-gonic/gin"
+)
 
 type (
-	UserController struct{}
+	UserController struct{
+		UserUsecase *usecase.UserUsecase
+	}
 )
+
+func (uc *UserController) Create(ctx *gin.Context) {
+
+}
 
 func (uc *UserController) GetAll(ctx *gin.Context) {
 

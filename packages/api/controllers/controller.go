@@ -8,6 +8,7 @@ import (
 
 type (
 	IController interface {
+		Create(ctx *gin.Context)
 		GetAll(ctx *gin.Context)
 		GetOnce(ctx *gin.Context)
 		Update(ctx *gin.Context)
@@ -15,16 +16,16 @@ type (
 	}
 
 	Usecase interface{
-		book.BookUsecase | user.UserUsecase
+		*book.BookUsecase | *user.UserUsecase
 	}
 )
 
-func NewController[T Usecase](repo T) IController {
-	switch any(repo).(type) {
-	case book.BookUsecase:
-		return &BookController{}
-	case user.UserUsecase:
-		return &UserController{}
+func NewController[T Usecase](usecase T) IController {
+	switch u := any(usecase).(type) {
+	case *book.BookUsecase:
+		return &BookController{ BookUsecase: u }
+	case *user.UserUsecase:
+		return &UserController{ UserUsecase: u }
 	default:
 		return nil
 	}
