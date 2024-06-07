@@ -1,16 +1,16 @@
 package repository
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/ISongwuts/go-crud-elasticsearch/internal/models"
 )
 
 type (
 	IBookRepository interface {
-		Create(ctx *gin.Context)
-		GetBooks(ctx *gin.Context) 
-		GetByID(ctx *gin.Context) 
-		Update(ctx *gin.Context) 
-		Delete(ctx *gin.Context) 
+		Create(user *models.Book) (string, error)
+		GetBooks() ([]models.Book, error)
+		GetByID(id string) (models.Book, error)
+		Update(id string, modify map[string]string) (string, error)
+		Delete(id string) (string, error)
 	}
 
 	BookRepository struct {}
@@ -20,23 +20,24 @@ func NewBookRepository() IBookRepository {
 	return &BookRepository{}
 }
 
-func (u *BookRepository) Create(ctx *gin.Context) {
-
+func (u *BookRepository) Create(users *models.Book) (string, error) {
+	return "", nil
 }
 
-func (u *BookRepository) GetBooks(ctx *gin.Context) {
-	//users := make([]models.Book, 0)
-
+func (u *BookRepository) GetBooks() ([]models.Book, error) {
+	users := make([]models.Book, 0)
+	return users, nil
 }
 
-func (u *BookRepository) GetByID(ctx *gin.Context) {
-	//user := models.Book{}
-
+func (u *BookRepository) GetByID(id string) (models.Book, error) {
+	user := models.Book{}
+	return user, nil
 }
 
-func (u *BookRepository) Update(ctx *gin.Context) {
-
+func (u *BookRepository) Update(id string, modify map[string]string) (string, error){
+	return "", nil
 }
 
-func (u *BookRepository) Delete(ctx *gin.Context) {
+func (u *BookRepository) Delete(id string) (string, error) {
+	return "", nil
 }
