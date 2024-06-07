@@ -2,13 +2,10 @@ package usecase
 
 import (
 	"github.com/ISongwuts/go-crud-elasticsearch/internal/models"
-	"github.com/ISongwuts/go-crud-elasticsearch/internal/users/repository"
 )
 
 type (
-	UserUsecase struct {
-		repository.UserRepository
-	}
+	UserUsecase struct {}
 
 	IUserUsecase interface {
 		Create(user *models.User) (string, error)
