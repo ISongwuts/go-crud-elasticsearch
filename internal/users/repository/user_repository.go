@@ -5,7 +5,6 @@ import (
 )
 
 type (
-	
 	IUserRepository interface {
 		Create(user *models.User) (string, error)
 		GetUsers() ([]models.User, error)
