@@ -1,17 +1,16 @@
 package repository
 
 import (
-	"github.com/ISongwuts/go-crud-elasticsearch/internal/models"
 	"github.com/gin-gonic/gin"
 )
 
 type (
 	IBookRepository interface {
-		Create(user *models.Book)
+		Create(ctx *gin.Context)
 		GetBooks(ctx *gin.Context) 
-		GetByID(id string) 
-		Update(id string, modify map[string]string) 
-		Delete(id string) 
+		GetByID(ctx *gin.Context) 
+		Update(ctx *gin.Context) 
+		Delete(ctx *gin.Context) 
 	}
 
 	BookRepository struct {}
@@ -21,7 +20,7 @@ func NewBookRepository() IBookRepository {
 	return &BookRepository{}
 }
 
-func (u *BookRepository) Create(users *models.Book) {
+func (u *BookRepository) Create(ctx *gin.Context) {
 
 }
 
@@ -30,14 +29,14 @@ func (u *BookRepository) GetBooks(ctx *gin.Context) {
 
 }
 
-func (u *BookRepository) GetByID(id string) {
+func (u *BookRepository) GetByID(ctx *gin.Context) {
 	//user := models.Book{}
 
 }
 
-func (u *BookRepository) Update(id string, modify map[string]string) {
+func (u *BookRepository) Update(ctx *gin.Context) {
 
 }
 
-func (u *BookRepository) Delete(id string) {
+func (u *BookRepository) Delete(ctx *gin.Context) {
 }
