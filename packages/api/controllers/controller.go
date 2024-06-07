@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"github.com/gin-gonic/gin"
-	book "github.com/ISongwuts/go-crud-elasticsearch/internal/books/repository"
-	user "github.com/ISongwuts/go-crud-elasticsearch/internal/users/repository"
+	book "github.com/ISongwuts/go-crud-elasticsearch/internal/books/usecase"
+	user "github.com/ISongwuts/go-crud-elasticsearch/internal/users/usecase"
 )
 
 type (
@@ -14,16 +14,16 @@ type (
 		Delete(ctx *gin.Context)
 	}
 
-	Repository interface{
-		book.BookRepository | user.UserRepository
+	Usecase interface{
+		book.BookUsecase | user.UserUsecase
 	}
 )
 
-func NewController[T Repository](repo T) IController {
+func NewController[T Usecase](repo T) IController {
 	switch any(repo).(type) {
-	case book.BookRepository:
+	case book.BookUsecase:
 		return &BookController{}
-	case user.UserRepository:
+	case user.UserUsecase:
 		return &UserController{}
 	default:
 		return nil
