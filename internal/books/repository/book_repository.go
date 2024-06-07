@@ -7,7 +7,7 @@ import (
 type (
 	IBookRepository interface {
 		Create(user *models.Book) (string, error)
-		GetUsers() ([]models.Book, error)
+		GetBooks() ([]models.Book, error)
 		GetByID(id string) (models.Book, error)
 		Update(id string, modify map[string]string) (string, error)
 		Delete(id string) (string, error)
@@ -16,7 +16,7 @@ type (
 	BookRepository struct {}
 )
 
-func NewUserRepository() IBookRepository {
+func NewBookRepository() IBookRepository {
 	return &BookRepository{}
 }
 
@@ -24,7 +24,7 @@ func (u *BookRepository) Create(users *models.Book) (string, error) {
 	return "", nil
 }
 
-func (u *BookRepository) GetUsers() ([]models.Book, error) {
+func (u *BookRepository) GetBooks() ([]models.Book, error) {
 	users := make([]models.Book, 0)
 	return users, nil
 }
