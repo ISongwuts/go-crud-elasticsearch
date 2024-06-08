@@ -7,8 +7,7 @@ import (
 )
 
 func BookRouter(rg *gin.RouterGroup) {
-	bookUsecase := usecase.BookUsecase{}
-	controller := controllers.NewController(&bookUsecase)
+	controller := controllers.NewController(&usecase.BookUsecase{})
 	
 	//Route paths
 	rg.GET("/books", controller.GetAll)

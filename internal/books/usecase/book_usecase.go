@@ -1,6 +1,7 @@
 package usecase
 
 import (
+	"github.com/ISongwuts/go-crud-elasticsearch/config"
 	"github.com/ISongwuts/go-crud-elasticsearch/internal/books/repository"
 	"github.com/ISongwuts/go-crud-elasticsearch/internal/models"
 )
@@ -23,24 +24,34 @@ func NewBookUsecase() IBookUsecase {
 	return &BookUsecase{}
 }
 
-func (u *BookUsecase) Create(users *models.Book) (string, error) {
+func (bu *BookUsecase) Create(users *models.Book) (string, error) {
 	return "", nil
 }
 
-func (u *BookUsecase) GetBooks() ([]models.Book, error) {
-	users := make([]models.Book, 0)
-	return users, nil
+func (bu *BookUsecase) GetBooks() ([]models.Book, error) {
+	client, err := config.NewConfig().ElasticSearchConfig()
+
+	if err != nil {
+		return nil, err
+	}
+
+	books, err := bu.BookRepository.GetBooks(client)
+	if err != nil {
+		return nil, err
+	}
+
+	return books, nil
 }
 
-func (u *BookUsecase) GetByID(id string) (models.Book, error) {
+func (bu *BookUsecase) GetByID(id string) (models.Book, error) {
 	user := models.Book{}
 	return user, nil
 }
 
-func (u *BookUsecase) Update(id string, modify map[string]string) (string, error){
+func (bu *BookUsecase) Update(id string, modify map[string]string) (string, error){
 	return "", nil
 }
 
-func (u *BookUsecase) Delete(id string) (string, error) {
+func (bu *BookUsecase) Delete(id string) (string, error) {
 	return "", nil
 }
